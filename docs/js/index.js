@@ -24,9 +24,10 @@ async function showMartingale() {
         settings.endDate,
         settings.budget,
         settings.count,
+        settings.margin,
+        settings.multiplier,
         settings.sellProfit,
         settings.buyFall,
-        settings.margin,
         settings.direction
     )
 

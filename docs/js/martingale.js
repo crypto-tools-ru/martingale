@@ -1,4 +1,4 @@
-async function calculateMartingale(symbol, start, end, budget, count, sellProfit, buyFall, margin, direction) {
+async function calculateMartingale(symbol, start, end, budget, count, margin, multiplier, sellProfit, buyFall, direction) {
     const calculateProfit = direction === "Long"
         ? (end, start) => (end - start) / start
         : (end, start) => (start - end) / start
@@ -16,7 +16,7 @@ async function calculateMartingale(symbol, start, end, budget, count, sellProfit
         const lastResult = results[results.length - 1]
 
         if (!results.length || !lastResult?.money) {
-            results.push(add(candle, 0, 0, budget, calculateProfit, symbolInfo))
+            results.push(add(candle, 0, 0, budget, multiplier, calculateProfit, symbolInfo))
             addCount++
             continue
         }
@@ -30,7 +30,7 @@ async function calculateMartingale(symbol, start, end, budget, count, sellProfit
         }
 
         if (profit < buyFall && canAdd) {
-            results.push(add(candle, lastResult.money, lastResult.coins, budget, calculateProfit, symbolInfo))
+            results.push(add(candle, lastResult.money, lastResult.coins, budget, multiplier, calculateProfit, symbolInfo))
             addCount++
             continue
         }
@@ -59,11 +59,12 @@ function getMartingaleTotal(results, margin) {
     }
 }
 
-function add(candle, lastMoney, lastCoins, budget, calculateProfit, symbolInfo) {
+function add(candle, lastMoney, lastCoins, budget, multiplier, calculateProfit, symbolInfo) {
     const date = formatDate(candle.date)
     const price = candle.close
-    const money = round(!!lastMoney ? lastMoney * 2 : budget)
-    const coins = round(lastCoins + (!!lastMoney ? lastMoney : budget) / price, symbolInfo.countStep)
+    const addMoney = !!lastMoney ? lastMoney * (multiplier - 1) : budget
+    const money = round(lastMoney + addMoney)
+    const coins = round(lastCoins + addMoney / price, symbolInfo.countStep)
     const avgPrice = round(money / coins, symbolInfo.priceStep)
     const fall = round(calculateProfit(candle.low, avgPrice) * 100)
     const profit = 0

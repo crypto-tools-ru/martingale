@@ -17,49 +17,49 @@
         <h1 class="mb-4">Стратегия Мартингейл</h1>
 
         <div class="row">
-            <div class="col">
-                <div class="mb-3">
-                    <label for="symbol" class="form-label">Криптовалюта</label>
-                    <input type="text" class="form-control" id="symbol" value="BTC">
-                </div>
-                <div class="mb-3">
-                    <label for="direction" class="form-label">Long или Short</label>
-                    <input type="text" class="form-control" id="direction" value="Long">
-                </div>
-                <div class="mb-3">
-                    <label for="startDate" class="form-label">Дата начала периода</label>
-                    <input type="text" class="form-control" id="startDate" value="2021-06-01">
-                </div>
-                <div class="mb-3">
-                    <label for="endDate" class="form-label">Дата завершения периода</label>
-                    <input type="text" class="form-control" id="endDate" value="2025-06-01">
-                </div>
-
+            <div class="col-lg-6 mb-3">
+                <label for="symbol" class="form-label">Криптовалюта</label>
+                <input type="text" class="form-control" id="symbol" value="BTC">
             </div>
-
-            <div class="col">
-                <div class="mb-3">
-                    <label for="budget" class="form-label">Бюджет на одну позицию</label>
-                    <input type="text" class="form-control" id="budget" value="100">
-                </div>
-                <div class="mb-3">
-                    <label for="count" class="form-label">Кол-во покупок</label>
-                    <input type="text" class="form-control" id="count" value="4">
-                </div>
-                <div class="mb-3">
-                    <label for="margin" class="form-label">Плечо</label>
-                    <input type="text" class="form-control" id="margin" value="5">
-                </div>
-                <div class="mb-3">
-                    <label for="sellProfit" class="form-label">Профит для продажи</label>
-                    <input type="text" class="form-control" id="sellProfit" value="5">
-                </div>
-                <div class="mb-3">
-                    <label for="buyFall" class="form-label">Падение для покупки</label>
-                    <input type="text" class="form-control" id="buyFall" value="-7">
-                </div>
+            <div class="col-lg-6 mb-3">
+                <label for="direction" class="form-label">Long или Short</label>
+                <input type="text" class="form-control" id="direction" value="Long">
             </div>
+            <div class="col-lg-6 mb-3">
+                <label for="startDate" class="form-label">Дата начала периода</label>
+                <input type="text" class="form-control" id="startDate" value="2021-06-01">
+            </div>
+            <div class="col-lg-6 mb-3">
+                <label for="endDate" class="form-label">Дата завершения периода</label>
+                <input type="text" class="form-control" id="endDate" value="2025-06-01">
+            </div>
+            <div class="col-lg-6 mb-3">
+                <label for="budget" class="form-label">Бюджет на одну позицию</label>
+                <input type="text" class="form-control" id="budget" value="100">
+            </div>
+            <div class="col-lg-6 mb-3">
+                <label for="count" class="form-label">Кол-во покупок</label>
+                <input type="text" class="form-control" id="count" value="4">
+            </div>
+            <div class="col-lg-6 mb-3">
+                <label for="margin" class="form-label">Плечо</label>
+                <input type="text" class="form-control" id="margin" value="5">
+            </div>
+            <div class="col-lg-6 mb-3">
+                <label for="multiplier" class="form-label">Множитель</label>
+                <input type="text" class="form-control" id="multiplier" value="2">
+            </div>
+            <div class="col-lg-6 mb-3">
+                <label for="sellProfit" class="form-label">Профит для продажи</label>
+                <input type="text" class="form-control" id="sellProfit" value="5">
+            </div>
+            <div class="col-lg-6 mb-3">
+                <label for="buyFall" class="form-label">Падение для покупки</label>
+                <input type="text" class="form-control" id="buyFall" value="-7">
+            </div>
+        </div>
 
+        <div>
             <div>
                 <button id="show-martingale" class="btn btn-primary"
                     onclick="martingale(); return false;">Показать</button>
@@ -67,8 +67,8 @@
 
             <div id="martingale-loader" class="my-4" style="display: none;">
                 <div class="progress" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                    <div id="martingale-loader-status"
-                        class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%">
+                    <div id="martingale-loader-status" class="progress-bar progress-bar-striped progress-bar-animated"
+                        style="width: 100%">
                         Загрузка...
                     </div>
                 </div>
