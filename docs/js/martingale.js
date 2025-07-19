@@ -62,7 +62,7 @@ function getMartingaleTotal(results, margin) {
 function add(candle, lastMoney, lastCoins, budget, multiplier, calculateProfit, symbolInfo) {
     const date = formatDate(candle.date)
     const price = candle.close
-    const addMoney = !!lastMoney ? lastMoney * (multiplier - 1) : budget
+    const addMoney = multiplier > 1 ? (!!lastMoney ? lastMoney * (multiplier - 1) : budget) : budget
     const money = round(lastMoney + addMoney)
     const coins = round(lastCoins + addMoney / price, symbolInfo.countStep)
     const avgPrice = round(money / coins, symbolInfo.priceStep)
