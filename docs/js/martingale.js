@@ -38,16 +38,16 @@ async function calculateMartingale(symbol, start, end, budget, count, sellProfit
         results.push(notAdd(candle, lastResult, calculateProfit))
     }
 
-    const total = getMartingaleTotal(results, budget, margin, count)
+    const total = getMartingaleTotal(results, margin)
 
     return { results, total }
 }
 
-function getMartingaleTotal(results, budget, margin, count) {
+function getMartingaleTotal(results, margin) {
     const profit = round(sum(results, x => x.profit))
     const maxFall = round(min(results, x => x.fall))
     const tradesCount = results.filter(x => !!x.profit).length
-    const needTotalBudget = round(budget * Math.pow(2, count - 1) / margin)
+    const needTotalBudget = round(max(results, x => x.money)) / margin
     const percent = round((profit / needTotalBudget) * 100)
 
     return {
