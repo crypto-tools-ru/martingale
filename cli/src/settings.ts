@@ -9,8 +9,6 @@ export interface Settings {
     strategy: string,
 
     symbols: Symbol[],
-
-    trackPriceStartDate: number,
     trackPriceIntervalHours: number[],
 
     bybitApiKeyPublic: string,
@@ -31,7 +29,6 @@ function get(): Settings {
                 start: Date.parse(x[1]),
             })),
 
-        trackPriceStartDate: Date.parse(process.env.trackPriceStartDate!),
         trackPriceIntervalHours: process.env.trackPriceIntervalHours!
             .split(",")
             .map(x => x.trim())
