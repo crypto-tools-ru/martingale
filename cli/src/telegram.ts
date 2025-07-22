@@ -16,7 +16,7 @@ function init(settings: Settings) {
 }
 
 async function sendMessage(message: string) {
-    const line = `\#altcoinIndex ${formatDate(new Date())}\n${message}`
+    const line = `\#martingale ${formatDate(new Date())}\n${message}`
 
     await fetch(`https://api.telegram.org/bot${config!.tgBotToken}/sendMessage?chat_id=${config!.tgChatId}&text=${encodeURIComponent(line)}`)
 }
