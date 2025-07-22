@@ -3,6 +3,7 @@ import { pricesCalculator } from "./pricesCalculator"
 import { settings as settingsProvider, Settings } from "./settings"
 import { telegram } from "./telegram"
 import { linq } from "./linq"
+import { scheduler } from "./scheduler"
 
 async function trackPrice(settings: Settings) {
     const innerTrackPrice = async () => {
@@ -23,9 +24,7 @@ async function trackPrice(settings: Settings) {
         }
     }
 
-    const intervalMs = settings.trackPriceIntervalHours * 60 * 60 * 1000
-    intervalMs && setInterval(() => innerTrackPrice(), intervalMs)
-    await innerTrackPrice()
+    await scheduler.work(innerTrackPrice, ...settings.trackPriceIntervalHours)
 }
 
 async function main() {
